@@ -22,9 +22,9 @@ class User {
 
     }
 
-    async deleteUsersByFirstName(firsName) {
+    async deleteUsersByFirstName(firstName) {
         try {
-            const findResults = await this.findUsersByFirstName(firsName);
+            const findResults = await this.findUsersByFirstName(firstName);
             const db = await mongoDatabase.connect();
             const collection = db.collection('users');
             let results = [];
@@ -40,7 +40,7 @@ class User {
                 };
                 return results;
             } else {
-                return { message: 'No users deleted' }
+                return { message: `No users deleted with first name ${firstName}` }
             }
         } finally {
             await mongoDatabase.close();
