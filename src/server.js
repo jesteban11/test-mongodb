@@ -1,5 +1,5 @@
 const express = require('express');
-const userRoutes = require('./routes/users');
+const userRoutes = require('./routes/user');
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 const mongoDatabase = require('./config/mongo-database');
 
 // Define routes
-app.use('/users', userRoutes);
+app.use('/user', userRoutes);
 
 // Start the server
 mongoDatabase.connect().

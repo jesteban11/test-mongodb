@@ -16,8 +16,8 @@ exports.createUser = async (req, res) => {
     try {
         console.log(req.body)
         const { firstName, lastName, email } = req.body;
-        const insertResult = await user.insertOne(firstName, lastName, email);
-        res.status(201).json(insertResult);
+        const insertResult = await user.insertUser(firstName, lastName, email);
+        res.status(201).json([req.body, insertResult]);
     } catch (err) {
         console.error('Error getting users:', err);
         res.status(500).json({ message: 'Internal server error' });
@@ -42,6 +42,18 @@ exports.getAllUsersByFirstName = async (req, res) => {
     try {
         const firstName = req.params.name;
         const findResults = await user.findUsersByFirstName(firstName);
+        res.status(201).json(findResults);
+    } catch (err) {
+        console.error('Error getting users:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+exports.getAllUsersById = async (req, res) => {
+    console.log('GET');
+    try {
+        const userId = req.params.id;
+        const findResults = await user.findUsersById(userId);
         res.status(201).json(findResults);
     } catch (err) {
         console.error('Error getting users:', err);
