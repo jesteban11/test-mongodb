@@ -16,7 +16,7 @@ class MongoDatabase {
             // Connect to the MongoDB cluster
             await this.client.connect();
             // Make the appropriate DB calls
-            //await this.listDatabases(this.client);
+            await this.listDatabases(this.client);
 
             return this.client.db('bets-alternate')
 
